@@ -1,36 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Leonie's School Enrollment</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f7f7f7;
-  overflow-y: scroll;
-}
-
-header {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: url('path-to-leonie-image.jpg') no-repeat center center/cover;
-  z-index: -1;
-}
-
-section {
-  padding: 20px;
-  animation: fadein-scroll 12 seconds;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leonie's Enrollment RSVP</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header></header>
-<section>
-<h1>Welcome to Leonie's School Enrollment</h1>
-<p>Get ready for an exciting new school year!</p>
-</section>
+  <header class="cover">
+    <h1>Willkommen zur Einschulung von Leonie!</h1>
+  </header>
+  <main>
+    <section class="user-form">
+      <form action="mailto:bucherdominik@web.de,sarahotte@web.de" method="post" enctype="text/plain">
+        <label for="lastname">Nachname:</label>
+        <select id="lastname" name="lastname">
+          <option value="Bucher">Bucher</option>
+          <option value="Otte">Otte</option>
+          <option value="Aiple">Aiple</option>
+          <option value="Metz">Metz</option>
+          <option value="Sauter">Sauter</option>
+        </select>
+
+        <label for="persons">Personenanzahl:</label>
+        <select id="persons" name="persons">
+          <option value="1">1</option>
+          <option value="2" selected>2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+
+        <fieldset>
+          <legend>Teilnahme an:</legend>
+          <label><input type="checkbox" name="activities" value="Kirche+Schule"> Kirche + Schule</label>
+          <label><input type="checkbox" name="activities" value="Mittagessen"> Mittagessen</label>
+          <label><input type="checkbox" name="activities" value="Kaffee+Kuchen"> Kaffee & Kuchen</label>
+        </fieldset>
+
+        <label for="comments">Bemerkungen:</label>
+        <textarea id="comments" name="comments" rows="4" placeholder="Eure Bemerkungen"></textarea>
+
+        <button type="submit">Senden</button>
+      </form>
+    </section>
+    <section class="agenda">
+      <h2>Tagesordnung</h2>
+      <img src="agenda-image.jpg" alt="Agenda" class="full-width">
+    </section>
+  </main>
 </body>
 </html>
