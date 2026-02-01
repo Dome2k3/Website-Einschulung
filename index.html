@@ -18,9 +18,9 @@
   </header>
   <main>
     <section class="user-form">
-      <form action="mailto:bucherdominik@web.de,sarahotte@web.de" method="post" enctype="text/plain">
+      <form name="submit-to-google-sheet">
         <label for="lastname">Nachname:</label>
-        <select id="lastname" name="lastname">
+        <select id="lastname" name="Nachname">
           <option value="Bucher">Bucher</option>
           <option value="Otte">Otte</option>
           <option value="Aiple">Aiple</option>
@@ -29,7 +29,7 @@
         </select>
 
         <label for="persons">Personenanzahl:</label>
-        <select id="persons" name="persons">
+        <select id="persons" name="Personenanzahl">
           <option value="1">1</option>
           <option value="2" selected>2</option>
           <option value="3">3</option>
@@ -39,20 +39,21 @@
         <fieldset>
           <legend>Teilnahme an:</legend>
           <label class="checkbox-label">
-            <input type="checkbox" name="activities" value="Kirche+Schule"> Kirche + Schule
+            <input type="checkbox" name="Teilnahme_Kirche_Schule" value="Ja"> Kirche + Schule
           </label>
           <label class="checkbox-label">
-            <input type="checkbox" name="activities" value="Mittagessen"> Mittagessen
+            <input type="checkbox" name="Teilnahme_Mittagessen" value="Ja"> Mittagessen
           </label>
           <label class="checkbox-label">
-            <input type="checkbox" name="activities" value="Kaffee+Kuchen"> Kaffee &amp; Kuchen
+            <input type="checkbox" name="Teilnahme_Kaffee_Kuchen" value="Ja"> Kaffee &amp; Kuchen
           </label>
         </fieldset>
 
         <label for="comments">Bemerkungen:</label>
-        <textarea id="comments" name="comments" rows="4" placeholder="Bemerkungen..."></textarea>
+        <textarea id="comments" name="Bemerkungen" rows="4" placeholder="Bemerkungen..."></textarea>
 
-        <button type="submit">Senden</button>
+        <button type="submit" id="submitButton">Senden</button>
+        <p id="statusMessage" style="display:none; margin-top:10px;"></p>
       </form>
     </section>
 
@@ -61,5 +62,47 @@
       <img src="Agenda_Einschulung.png" alt="Agenda" class="full-width">
     </section>
   </main>
+
+  <script>
+    // URL deines Google Apps Scripts
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzEog7vpdKfUXVynSoXeetO5b-QFDShMJP8_c6GN-DSInin1rYvF9YM9IWVjwIKUG4/exec';
+
+    const form = document.forms['submit-to-google-sheet'];
+    const statusMsg = document.getElementById('statusMessage');
+    const btn = document.getElementById('submitButton');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      btn.disabled = true;
+      btn.innerText = 'Wird gesendet...';
+      statusMsg.style.display = 'none';
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          statusMsg.style.display = 'block';
+          statusMsg.style.backgroundColor = '#d4edda';
+          statusMsg.style.color = '#155724';
+          statusMsg.style.padding = '8px 10px';
+          statusMsg.style.borderRadius = '6px';
+          statusMsg.innerText = '✅ Anmeldung erfolgreich gespeichert! Vielen Dank.';
+
+          form.reset();
+          btn.disabled = false;
+          btn.innerText = 'Senden';
+        })
+        .catch(error => {
+          statusMsg.style.display = 'block';
+          statusMsg.style.backgroundColor = '#f8d7da';
+          statusMsg.style.color = '#721c24';
+          statusMsg.style.padding = '8px 10px';
+          statusMsg.style.borderRadius = '6px';
+          statusMsg.innerText = '❌ Fehler beim Senden. Bitte später erneut versuchen.';
+          console.error('Error!', error.message);
+          btn.disabled = false;
+          btn.innerText = 'Senden';
+        });
+    });
+  </script>
 </body>
 </html>
