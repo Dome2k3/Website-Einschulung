@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leonie's Einschulung RSVP</title>
+  <title>Leonies Einschulung RSVP</title>
+
+  <!-- Google Font: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -32,9 +38,15 @@
 
         <fieldset>
           <legend>Teilnahme an:</legend>
-          <label><input type="checkbox" name="activities" value="Kirche+Schule"> Kirche + Schule</label>
-          <label><input type="checkbox" name="activities" value="Mittagessen"> Mittagessen</label>
-          <label><input type="checkbox" name="activities" value="Kaffee+Kuchen"> Kaffee & Kuchen</label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="activities" value="Kirche+Schule"> Kirche + Schule
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="activities" value="Mittagessen"> Mittagessen
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="activities" value="Kaffee+Kuchen"> Kaffee &amp; Kuchen
+          </label>
         </fieldset>
 
         <label for="comments">Bemerkungen:</label>
@@ -43,6 +55,7 @@
         <button type="submit">Senden</button>
       </form>
     </section>
+
     <section class="agenda">
       <h2>Tagesordnung</h2>
       <img src="Agenda_Einschulung.png" alt="Agenda" class="full-width">
