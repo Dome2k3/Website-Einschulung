@@ -12,7 +12,7 @@ body, html {
 /* HEADER / COVER-BEREICH */
 header.cover {
   height: 100vh;
-  background: url('cover-image.jpg') no-repeat center center/cover;
+  background: url('Leonies Einschulung.jpg') no-repeat center center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
